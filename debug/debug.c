@@ -2,27 +2,40 @@
 #include "debug.h"
 #include <time.h>
 
-char* getTime() {
+char* debug_get_full_time_string() {
 	time_t now;
-	time(&now);
-	struct tm timeStruct;
-	timeStruct = gmtime(&now);
-	//undone
+	now = time(NULL);
+	char* char_time = ctime(&now);
+	return char_time;
 }
+
+void debug_print_current_time() {
+	time_t now = time(NULL);
+	struct tm temp_ts;
+	struct tm * point_ts;
+//	
+//	point_ts = gmtime(&now);
+//	格林威治时间
+	point_ts = localtime(&now);
+	temp_ts = *point_ts;
+	printf("%d-%d-%d %d:%d:%d: ", temp_ts.tm_year + 1900, temp_ts.tm_mon, temp_ts.tm_mday, temp_ts.tm_hour, temp_ts.tm_min, temp_ts.tm_sec);
+}
+
 void DEBUG_INFO(char* message) {
 #ifdef IS_DEBUG
-	time_t now;
-	time(&now);
-	printf("%s: DEBUG_INFO: %s\n",ctime(&now), message);
+	debug_print_current_time();
+	printf("DEBUG_INFO: %s\n", message);
 #endif
 }
 void DEBUG_WARNING(char* message) {
 #ifdef IS_DEBUG
+	debug_print_current_time();
 	printf("DEBUG_WARNING: %s\n",message);
 #endif
 }
 void DEBUG_ERROR(char* message) {
 #ifdef IS_DEBUG
+	debug_print_current_time();
 	printf("DEBUG_ERROR: %s\n",message);
 #endif
 }
