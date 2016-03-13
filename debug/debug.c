@@ -18,7 +18,7 @@ void debug_print_current_time() {
 //	格林威治时间
 	point_ts = localtime(&now);
 	temp_ts = *point_ts;
-	printf("%d-%d-%d %d:%d:%d: ", temp_ts.tm_year + 1900, temp_ts.tm_mon, temp_ts.tm_mday, temp_ts.tm_hour, temp_ts.tm_min, temp_ts.tm_sec);
+	printf("%d-%d-%d %d:%d:%d ", temp_ts.tm_year - 100, temp_ts.tm_mon, temp_ts.tm_mday, temp_ts.tm_hour, temp_ts.tm_min, temp_ts.tm_sec);
 }
 
 void DEBUG_INFO(char* message) {
