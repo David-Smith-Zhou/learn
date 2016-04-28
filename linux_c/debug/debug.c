@@ -21,21 +21,21 @@ void debug_print_current_time() {
 	printf("%d-%d-%d %d:%d:%d ", temp_ts.tm_year - 100, temp_ts.tm_mon, temp_ts.tm_mday, temp_ts.tm_hour, temp_ts.tm_min, temp_ts.tm_sec);
 }
 
-void DEBUG_INFO(char* message) {
+void DEBUG_INFO(char* file_name, int line_num, char* message) {
 #ifdef IS_DEBUG
 	debug_print_current_time();
-	printf("DEBUG_INFO: %s\n", message);
+	printf("[%s:%d]: DEBUG_INFO: %s\n", file_name, line_num, message);
 #endif
 }
-void DEBUG_WARNING(char* message) {
+void DEBUG_WARNING(char* file_name, int line_num, char* message) {
 #ifdef IS_DEBUG
 	debug_print_current_time();
-	printf("DEBUG_WARNING: %s\n",message);
+	printf("[%s:%d]: DEBUG_WARNING: %s\n", file_name, line_num, message);
 #endif
 }
-void DEBUG_ERROR(char* message) {
+void DEBUG_ERROR(char* file_name, int line_num, char* message) {
 #ifdef IS_DEBUG
 	debug_print_current_time();
-	printf("DEBUG_ERROR: %s\n",message);
+	printf("[%s:%d]: DEBUG_ERROR: %s\n", file_name, line_num, message);
 #endif
 }
